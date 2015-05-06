@@ -805,7 +805,7 @@ dogt = DOGE Testnet';
 
         // Something went wrong with date calculation and we ended up with a negative date.
         if ( 0 > $since )
-            return _( 'sometime');
+            return _( 'recently');
 
         /**
          * We only want to output one chunks of time here, eg:
