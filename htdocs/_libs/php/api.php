@@ -431,6 +431,13 @@ dogt = DOGE Testnet';
                 'h2' => 'TXID '.$tx['id'],
                 'button' => $this->priv($options)
             );
+            
+            if(!$tx['block_time'])
+            {
+                $data['header']['sub']['h1'] = 'transaction unconfirmed';
+                $tx['extras']['tx_time_ago'] = 'Unconfirmed';
+                $tx['extras']['block_time'] = 'Unconfirmed';
+            }
 
             $data['objs'] = array(
                 0 => array(
