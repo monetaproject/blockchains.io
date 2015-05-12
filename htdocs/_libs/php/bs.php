@@ -117,7 +117,13 @@ class blockstrap_core
         $slug = $this->slug($_SERVER, $base);
         $directory = $this->directory($_SERVER, $base);
         $currency = $this->currency($_SERVER, $base);
-        if(
+        if($slug && isset($_GET) && isset($_GET['searchterm']))
+        {
+            $url = $base.'multi/search/'.$_GET['searchterm'];
+            header('Location: '.$url, true, 302);
+            exit;
+        }
+        elseif(
             strlen($currency) == 3 
             || strlen($currency) == 4 
             || $this->is_page($slug, $currency)
@@ -132,19 +138,6 @@ class blockstrap_core
             {
                 $this->init($php_base, $base, $slug, $directory, $currency);
             }
-        }
-        elseif($slug)
-        {
-            if(isset($_GET) && isset($_GET['searchterm']))
-            {
-                $url = $base.'multi/'.$slug.'/'.$_GET['searchterm'];
-            }
-            else
-            {
-                $url = $base.$default_currency.'/'.$slug;
-            }
-            header('Location: '.$url, true, 302);
-            exit;
         }
         else
         {
